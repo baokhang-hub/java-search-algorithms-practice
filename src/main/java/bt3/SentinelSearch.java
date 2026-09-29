@@ -1,17 +1,21 @@
-package bt1;
+package bt3;
 
 import java.util.ArrayList;
 
-public class LinearSearch {
-    public static int linearSearch(ArrayList<Integer> arrayList, int k) {
-        int count = 0;
-        for (int i = 0; i < arrayList.size(); i++) {
+public class SentinelSearch {
+    public static int sentinelSearch(ArrayList<Integer> arrayList, int k) {
+        arrayList.add(k);
+        int count = 1;
+        int lastIndex = arrayList.size() - 1;
+        int i = 0;
+        while (arrayList.get(i) != k) {
+            i++;
             count++;
-            if (arrayList.get(i) == k) {
-                return count;
+            if (i == lastIndex) {
+                return -1;
             }
         }
-        return -1;
+        return count;
     }
 
     static void main(String[] args) {
@@ -39,11 +43,12 @@ public class LinearSearch {
 
         arrayList.sort(null);
 
-        int index = linearSearch(arrayList, 8);
+        int index = sentinelSearch(arrayList, 8);
         if (index == -1) {
             System.out.println("So khong ton tai ");
         } else {
             System.out.println("Tim thay voi so lan so sanh: " + index);
+
         }
     }
 }
